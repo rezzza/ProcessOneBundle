@@ -1,0 +1,21 @@
+{
+    "name": "rezzza/processone-bundle",
+    "description": "ProcessOne bundle for Symfony2 projects",
+    "keywords": ["processone", "notification", "symfony", "bundle"],
+    "type": "symfony-bundle",
+    "homepage": "https://github.com/rezzza/ProcessOneBundle",
+    "license": "MIT",
+    "authors": [{
+        "name":     "Community contributors",
+        "homepage": "https://github.com/rezzza/ProcessOneBundle/contributors"
+    }],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload":     {
+        "psr-0": { 
+            "Rezzza\\ProcessOneBundle": "" 
+        }
+    },
+    "target-dir": "Rezzza/ProcessOneBundle"
+}
