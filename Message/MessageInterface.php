@@ -15,6 +15,11 @@ interface MessageInterface
     public function getPayload();
 
     /**
+     * validate current message and throw an exception if there is any trouble.
+     */
+    public function validate();
+
+    /**
      * @return string prefixed by a /
      */
     public function getEndpoint();

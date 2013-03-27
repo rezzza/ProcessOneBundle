@@ -2,6 +2,8 @@
 
 namespace Rezzza\ProcessOneBundle\Message;
 
+use Rezzza\ProcessOneBundle\Exception;
+
 /**
  * APSMessage 
  *
@@ -35,6 +37,20 @@ class APSMessage implements MessageInterface
                 )
             )
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function validate()
+    {
+        if (empty($this->apsData)) {
+            throw new Exception\EmptyMessageException('Aps data are mandatory.');
+        }
+
+        if ($length = mb_strlen(serialize($this->getPayload())) > 256) {
+            throw new Exception\InvalidMessageException(sprintf('Length of message exceed 256 chars (current = %s)', $length));
+        }
     }
 
     /**

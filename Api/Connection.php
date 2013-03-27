@@ -55,6 +55,8 @@ class Connection
             throw new \LogicException('Please, provide a recipient.');
         }
 
+        $this->message->validate();
+
         $payload = array(
             'id'      => $this->getUniqid(),
             'expires' => $this->getTimestamp()+$this->metadata->getPublishExpire(),

@@ -49,6 +49,7 @@ class Connection extends atoum\test
             ->and($connection->setRecipient($recipient))
             // send the message to recipient
             ->when($connection->send())
+                ->mock($message)->call('validate')->once()
                 ->mock($message)->call('getEndPoint')->once()
                 ->mock($transport)
                     ->call('send')
