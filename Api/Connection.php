@@ -24,6 +24,16 @@ class Connection
     protected $transport;
 
     /**
+     * @var MessageInterface
+     */
+    protected $message;
+
+    /**
+     * @var RecipientInterface
+     */
+    protected $recipient;
+
+    /**
      * @param Metadata $metadata metadata
      */
     public function __construct(Metadata $metadata, TransportInterface $transport)
@@ -33,13 +43,18 @@ class Connection
     }
 
     /**
-     * @param MessageInterface   $message   message
-     * @param RecipientInterface $recipient recipient
-     *
      * @return boolean
      */
-    public function send(MessageInterface $message, RecipientInterface $recipient)
+    public function send()
     {
+        if (!$this->message) {
+            throw new \LogicException('Please, provide a message.');
+        }
+
+        if (!$this->recipient) {
+            throw new \LogicException('Please, provide a recipient.');
+        }
+
         $payload = array(
             'id'      => $this->getUniqid(),
             'expires' => $this->getTimestamp()+$this->metadata->getPublishExpire(),
@@ -66,6 +81,30 @@ class Connection
         );
 
         return $this->transport->send($url, $payload, $parameters);
+    }
+
+    /**
+     * @param MessageInterface $message message
+     *
+     * @return Connection
+     */
+    public function setMessage(MessageInterface $message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * @param RecipientInterface $recipient recipient
+     *
+     * @return Connection
+     */
+    public function setRecipient(RecipientInterface $recipient)
+    {
+        $this->recipient = $recipient;
+
+        return $this;
     }
 
     /**

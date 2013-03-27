@@ -35,8 +35,10 @@ class Connection extends atoum\test
             ->and($connection = new \Mock\Connection($metadata, $transport))
             ->and($connection->getMockController()->getTimestamp = 13)
             ->and($connection->getMockController()->getUniqid    = 'jm')
+            ->and($connection->setMessage($message))
+            ->and($connection->setRecipient($recipient))
             // send the message to recipient
-            ->when($connection->send($message, $recipient))
+            ->when($connection->send())
                 ->mock($message)->call('getEndPoint')->once()
                 ->mock($transport)
                     ->call('send')
