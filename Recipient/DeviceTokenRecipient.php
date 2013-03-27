@@ -16,7 +16,6 @@ class DeviceTokenRecipient extends AbstractRecipient implements RecipientInterfa
      */
     public function getPayload()
     {
-        return array('device_tokens' => $this->recipients);
+        return array('device_tokens' => array_values($this->recipients));
     }
-
 }
