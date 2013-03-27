@@ -26,6 +26,15 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('connections')
                     ->prototype('array')
                         ->children()
+                            ->scalarNode('transport')
+                                ->defaultValue('guzzle')
+                                ->validate()
+                                    ->ifTrue(function($v) {
+                                        return $v != 'guzzle';
+                                    })
+                                    ->thenInvalid('Transport only supports "guzzle"')
+                                ->end()
+                            ->end()
                             ->scalarNode('host')->cannotBeEmpty()->end()
                             ->arrayNode('publish')
                                 ->children()

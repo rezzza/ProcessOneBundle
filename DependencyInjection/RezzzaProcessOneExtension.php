@@ -26,6 +26,10 @@ class RezzzaProcessOneExtension extends Extension
         $processor = new Processor();
         $config    = $processor->processConfiguration(new Configuration(), $configs);
 
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/services'));
+        $loader->load('transport.xml');
+
+
         foreach ($config['connections'] as $connection => $data) {
             $metadata = new Definition('Rezzza\ProcessOneBundle\Api\Metadata');
             $metadata->setArguments(array(
@@ -36,8 +40,14 @@ class RezzzaProcessOneExtension extends Extension
                 $data['publish']['expire'],
             ));
 
+            $transport  = $data['transport'];
+            if ($transport == 'guzzle' && !class_exists('\Guzzle\Http\Client')) {
+                throw new \RuntimeException('Guzzle library is not installed/autoloaded');
+            }
+
             $definition = new Definition('Rezzza\ProcessOneBundle\Api\Connection');
             $definition->addArgument($metadata);
+            $definition->addArgument(new Reference(sprintf('rezzza.process_one.transport.%s', $transport)));
 
             $container->setDefinition(sprintf('rezzza.process_one.%s.connection', $connection), $definition);
         }

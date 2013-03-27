@@ -13,7 +13,11 @@
         "php": ">=5.3.3"
     },
     "require-dev": {
-        "atoum/atoum": "*"
+        "atoum/atoum": "*",
+        "guzzle/guzzle": "3.*"
+    },
+    "suggests": {
+        "guzzle": "use guzzle transport"
     },
     "config": {
         "bin-dir": "bin"
