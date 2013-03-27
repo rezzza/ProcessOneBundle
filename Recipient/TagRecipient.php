@@ -36,6 +36,6 @@ class TagRecipient extends AbstractRecipient implements RecipientInterface
      */
     public function getPayload()
     {
-        return array('tags' => $this->recipients);
+        return array('tags' => array_values($this->recipients));
     }
 }

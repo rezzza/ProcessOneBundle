@@ -33,8 +33,7 @@ class RezzzaProcessOneExtension extends Extension
         foreach ($config['connections'] as $connection => $data) {
             $metadata = new Definition('Rezzza\ProcessOneBundle\Api\Metadata');
             $metadata->setArguments(array(
-                $data['host']['push'],
-                $data['host']['richPush'],
+                $data['host'],
                 $data['publish']['key'],
                 $data['publish']['secret'],
                 $data['publish']['expire'],
