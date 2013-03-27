@@ -13,4 +13,7 @@ script:
 
 notifications:
     email:
-        - ci@verylastroom.com
+        recipients:
+            - ci@verylastroom.com
+        on_success: change
+        on_failure: change
