@@ -12,6 +12,13 @@
     "require": {
         "php": ">=5.3.3"
     },
+    "require-dev": {
+        "atoum/atoum": "*"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "minimum-stability": "dev",
     "autoload":     {
         "psr-0": { 
             "Rezzza\\ProcessOneBundle": "" 
