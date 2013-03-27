@@ -35,9 +35,9 @@ abstract class AbstractRecipient
             }
 
             return $this;
+        } else {
+            $this->recipients[$recipient] = $recipient;
         }
-
-        $this->recipients[$recipient];
 
         return $this;
     }

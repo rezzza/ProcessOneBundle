@@ -16,6 +16,6 @@ class AliasRecipient extends AbstractRecipient implements RecipientInterface
      */
     public function getPayload()
     {
-        return array('aliases' => $this->recipients);
+        return array('aliases' => array_values($this->recipients));
     }
 }
