@@ -60,12 +60,12 @@ class Connection
             'expires' => $this->getTimestamp()+$this->metadata->getPublishExpire(),
         );
 
-        $payload = array_merge((array) $message->getPayload(), $payload);
-        $payload = array_merge((array) $recipient->getPayload(), $payload);
+        $payload = array_merge((array) $this->message->getPayload(), $payload);
+        $payload = array_merge((array) $this->recipient->getPayload(), $payload);
 
         $payload = json_encode($payload);
 
-        $url     = $this->metadata->getHost().$message->getEndpoint();
+        $url     = $this->metadata->getHost().$this->message->getEndpoint();
         $infoUrl = parse_url($url);
 
         $signatureCriterias = implode("\n", array(

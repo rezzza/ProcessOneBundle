@@ -20,4 +20,12 @@ class APSMessage extends AbstractMessage implements MessageInterface
             'aps' => $this->data,
         );
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEndPoint()
+    {
+        return '/api/push';
+    }
 }
