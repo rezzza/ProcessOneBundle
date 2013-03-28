@@ -26,7 +26,8 @@ class GuzzleTransport implements TransportInterface
             'Content-Type' => 'application/json'
         ), $payload);
 
-        //@todo exception system.
-        return $request->send();
+        $response = $request->send();
+
+        return new Response($response->getStatusCode(), $response->getBody(true));
     }
 }

@@ -14,7 +14,7 @@ interface TransportInterface
      * @param string $payload    payload
      * @param array  $parameters parameters
      * 
-     * @return boolean
+     * @return Response
      */
     public function send($url, $payload, array $parameters);
 }

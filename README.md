@@ -67,3 +67,8 @@ $conn->setRecipient($recipients)
 ## Customisation
 
 You can easily add new `messages`, `recipients`, `transport`
+
+## Wishlist
+
+- Tests
+- Standalone library
