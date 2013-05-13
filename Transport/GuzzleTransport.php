@@ -18,7 +18,7 @@ class GuzzleTransport implements TransportInterface
     public function send($url, $payload, array $parameters)
     {
         $client = new Client();
-        $client->setSslVerification(false, false, 2);
+        $client->setSslVerification(0, 1, 2);
 
         $url   .= '?'.http_build_query($parameters);
 
