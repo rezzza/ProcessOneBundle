@@ -11,10 +11,10 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Processor;
 
 /**
- * RezzzaProcessOneExtension 
+ * RezzzaProcessOneExtension
  *
  * @uses Extension
- * @author Stephane PY <py.stephane1@gmail.com> 
+ * @author Stephane PY <py.stephane1@gmail.com>
  */
 class RezzzaProcessOneExtension extends Extension
 {
@@ -28,6 +28,7 @@ class RezzzaProcessOneExtension extends Extension
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/services'));
         $loader->load('transport.xml');
+        $loader->load('recipient.xml');
 
 
         foreach ($config['connections'] as $connection => $data) {
