@@ -42,8 +42,8 @@ class RecipientFactory extends atoum\test
     public function getRecipientDataProvider()
     {
         return array(
-            array('~6@vlr.com', '\Rezzza\ProcessOneBundle\Recipient\AliasRecipient'),
-            array('H3ze7:Q3em-2', '\Rezzza\ProcessOneBundle\Recipient\DeviceTokenRecipient'),
+            array('-6@vlr.com', '\Rezzza\ProcessOneBundle\Recipient\AliasRecipient'),
+            array('APA91bHW6E2_skf5IFLRr9enNNz-Mgz16qy-gMHn_OWJTHBRkuNqgwLklx5Dt40xq1dDqvl3bd-Mavho5mah4Zanrn392Bawo8-WpUEPm6oo_b-k6PtxS9HYk3mMPwqSd5NMN-uecYTEFShDVYZb3feiKZku3OcgpQ', '\Rezzza\ProcessOneBundle\Recipient\DeviceTokenRecipient'),
             array('@all', '\Rezzza\ProcessOneBundle\Recipient\TagRecipient'),
         );
     }
@@ -51,9 +51,11 @@ class RecipientFactory extends atoum\test
     public function failRecipientDataProvider()
     {
         return array(
+            array('~6@vlr.com'),
             array('Jean Marc'),
             array('mika@vlr.com'),
             array(new \stdClass()),
+            array('@unsupported_tag'),
         );
     }
 }

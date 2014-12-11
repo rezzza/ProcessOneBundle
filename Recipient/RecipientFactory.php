@@ -48,7 +48,7 @@ class RecipientFactory
      */
     private function isAlias($to)
     {
-        return (preg_match('/^~[^@]+@[^.]+\..+/', $to) === 1);
+        return (preg_match('/^-[^@]+@[^.]+\..+/', $to) === 1);
     }
 
     /**
@@ -66,6 +66,6 @@ class RecipientFactory
      */
     private function isToken($to)
     {
-        return (preg_match('/^[a-z0-9-:]+$/i', $to) === 1);
+        return (preg_match('/^[a-z0-9-_]+$/i', $to) === 1);
     }
 }
