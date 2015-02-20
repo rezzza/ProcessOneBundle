@@ -2,27 +2,36 @@
 
 namespace Rezzza\ProcessOneBundle\Transport;
 
-use Guzzle\Http\Client;
+use Guzzle\Http\ClientInterface;
 
 /**
- * GuzzleTransport 
+ * GuzzleTransport
  *
  * @uses TransportInterface
- * @author Stephane PY <py.stephane1@gmail.com> 
+ * @author Stephane PY <py.stephane1@gmail.com>
  */
 class GuzzleTransport implements TransportInterface
 {
+    /**
+     * @var ClientInterface
+     */
+    private $client;
+
+    public function __construct(ClientInterface $client)
+    {
+        $this->client = $client;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function send($url, $payload, array $parameters)
     {
-        $client = new Client();
-        $client->setSslVerification(false, true, 2);
+        $this->client->setSslVerification(false, true, 2);
 
-        $url   .= '?'.http_build_query($parameters);
+        $url .= '?' . http_build_query($parameters);
 
-        $request = $client->post($url, array(
+        $request = $this->client->post($url, array(
             'Content-Type' => 'application/json'
         ), $payload);
 
