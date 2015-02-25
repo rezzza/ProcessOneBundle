@@ -9,7 +9,11 @@
     </parameters>
 
     <services>
-        <service id="rezzza.process_one.transport.guzzle" class="%rezzza.process_one.transport.guzzle.class%" />
+        <service id="rezzza.process_one.guzzle" class="Guzzle\Http\Client"/>
+
+        <service id="rezzza.process_one.transport.guzzle" class="%rezzza.process_one.transport.guzzle.class%">
+            <argument type="service" id="rezzza.process_one.guzzle"/>
+        </service>
     </services>
 
 </container>
