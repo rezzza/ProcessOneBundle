@@ -1,15 +1,21 @@
 language: php
 
-php:
-    - 5.3
-    - 5.4
+dist: trusty
+sudo: required
 
-before_script:
-    - curl -s http://getcomposer.org/installer | php
-    - COMPOSER_ROOT_VERSION=dev-master php composer.phar install --dev
+php:
+    - 5.4
+    - 5.6
+    - 7.0
+
+install:
+    - git clone --branch trusty --depth=1 https://github.com/rezzza/travis-ci.git ~/.rezzza.travis-ci
+    - ~/.rezzza.travis-ci/php/bootstrap.sh apcu
+    - phpenv rehash
+    - composer install --optimize-autoloader --prefer-dist --no-scripts
 
 script:
-    - bin/atoum -d tests/units
+    - bin/atoum -ulr
 
 notifications:
     email:
